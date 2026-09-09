@@ -17,7 +17,12 @@
     "cap:sync": "npm run build && npx cap sync",
     "android:build": "JAVA_HOME=\"$(test -d /Applications/Android\\ Studio.app/Contents/jbr/Contents/Home && echo /Applications/Android\\ Studio.app/Contents/jbr/Contents/Home || echo $JAVA_HOME)\" npm run cap:sync && cd android && JAVA_HOME=\"$(test -d /Applications/Android\\ Studio.app/Contents/jbr/Contents/Home && echo /Applications/Android\\ Studio.app/Contents/jbr/Contents/Home || echo $JAVA_HOME)\" ./gradlew assembleDebug",
     "android:open": "npx cap open android",
-    "ios:open": "npx cap open ios"
+    "ios:open": "npx cap open ios",
+    "docker:build": "docker build -t breaking-bad-brick .",
+    "docker:run": "docker run -p 8080:8080 --env-file .env breaking-bad-brick",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f"
   },
   "dependencies": {
     "@capacitor-community/admob": "^8.0.0",
@@ -28,8 +33,10 @@
     "@capacitor/ios": "^8.5.0",
     "@capacitor/splash-screen": "^8.0.2",
     "@capacitor/status-bar": "^8.0.3",
+    "dotenv": "^8.2.0",
     "firebase": "^12.17.1",
     "lil-gui": "^0.20.0",
+    "node-fetch": "^3.3.2",
     "three": "^0.180.0"
   },
   "devDependencies": {
